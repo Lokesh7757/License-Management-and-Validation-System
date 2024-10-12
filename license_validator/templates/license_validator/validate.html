@@ -1,0 +1,27 @@
+<!-- license_validator/templates/license_validator/validate.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>License Validation</title>
+    <link rel="stylesheet" href="{% static 'license_validator/css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>License Validation</h1>
+       <!-- validate.html -->
+    <form method="post" action="{% url 'validate_license' %}">
+    {% csrf_token %}
+       <input type="text" name="license_number" placeholder="Enter License Number">
+       <button type="submit">Validate</button>
+    </form>
+
+        {% if result is not None %}
+            <h2>License Status: {{ result }}</h2>
+        {% endif %}
+    </div>
+    <script src="{% static 'license_validator/js/script.js' %}"></script>
+</body>
+</html>
